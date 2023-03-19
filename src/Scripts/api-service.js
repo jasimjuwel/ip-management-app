@@ -1,9 +1,9 @@
 import axios from "axios";
 import Cookies from "js-cookie";
-import {alertPop} from "./helper";
+import { alertPop } from "./helper";
 
 const base_url = process.env.REACT_APP_BASE;
-const token = Cookies.get("AOSToken") || "";
+const token = Cookies.get("IPToken") || "";
 
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
@@ -19,19 +19,12 @@ export const getData = async (query, no_token) => {
       headers: no_token
         ? {}
         : {
-          'x-auth-token': `${token}`,
-          },
+          'Authorization': `Bearer ${token}`,
+        },
     });
     return data;
   } catch (error) {
-    // checkRes(error?.response?.status);
-    // error.response?.data?.messages &&
-    // typeof error.response?.data?.messages === "object"
-    // ? error.response.data.messages.map((err) => {
-    //     alertPop(error_status, err);
-    //     })
-    // : errorHandle(error);
-    // return false;
+
   }
 };
 
@@ -47,8 +40,8 @@ export const postData = async (query, data, no_token) => {
       headers: no_token
         ? {}
         : {
-            'x-auth-token': `${token}`,
-          },
+          'Authorization': `Bearer ${token}`,
+        },
       data: data,
     });
 
@@ -56,13 +49,6 @@ export const postData = async (query, data, no_token) => {
   } catch (error) {
     console.log("error", error.response);
     alert(error?.response?.data);
-    // checkRes(error.response.status);
-    // error.response && error.response.data && error.response.data.messages
-    //   ? error.response.data.messages.map((err) => {
-    //       // alertPop(error_status, err);
-    //       console.log("err", err);
-    //     })
-    //   : console.log("error", error); //errorHandle(error);
     return false;
   }
 };
@@ -76,43 +62,17 @@ export const putData = async (query, data, no_token) => {
       headers: no_token
         ? {}
         : {
-            'x-auth-token': `${token}`,
-          },
+          'Authorization': `Bearer ${token}`,
+        },
       data: data,
     });
 
     return res;
   } catch (error) {
     console.log("error", error);
-    // checkRes(error.response.status);
-    // error.response && error.response.data && error.response.data.messages
-    //   ? error.response.data.messages.map((err) => {
-    //       // alertPop(error_status, err);
-    //       console.log("err", err);
-    //     })
-    //   : console.log("error", error); //errorHandle(error);
     return false;
   }
 };
-
-// const setUserProfile = async () => {
-//   try {
-//     let res = await axios({
-//       method: "post",
-//       url: `${base_url}${ME}`,
-//       headers: {
-//         Authorization: `bearer ${token}`,
-//       },
-//       data: {},
-//     });
-
-//     if (res?.data?.status_code && checkRes(res.data.status_code)) {
-//       window.localStorage.setItem("profile", JSON.stringify(res.data));
-//     }
-//   } catch (error) {
-//     console.log("error", error);
-//   }
-// };
 
 export const deleteData = async (query, no_token) => {
   try {
@@ -120,18 +80,10 @@ export const deleteData = async (query, no_token) => {
       headers: no_token
         ? {}
         : {
-          'x-auth-token': `${token}`,
-          },
+          'Authorization': `Bearer ${token}`,
+        },
     });
     return data;
   } catch (error) {
-    // checkRes(error?.response?.status);
-    // error.response?.data?.messages &&
-    // typeof error.response?.data?.messages === "object"
-    // ? error.response.data.messages.map((err) => {
-    //     alertPop(error_status, err);
-    //     })
-    // : errorHandle(error);
-    // return false;
   }
 };

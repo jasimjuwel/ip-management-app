@@ -5,6 +5,7 @@ import $ from "jquery";
 import "metismenu";
 import userImg from "../../assets/images/users/avatar-1.jpg";
 import chart from "../../assets/images/chart.svg"
+import { Link } from 'react-router-dom';
 
 export default function Sidebar() {
 
@@ -52,9 +53,9 @@ export default function Sidebar() {
                   </a>
                 </li>
                 <li>
-                  <a href="audit-log.html">
+                  <Link to="/audit-log">
                     <span data-key="t-chat"> Audit Log </span>
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </li>
