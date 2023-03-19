@@ -1,0 +1,26 @@
+
+.ant-checkbox-checked {
+    // checkbox color
+    .ant-checkbox-inner {
+        background-color: $blue;
+        border-color: $blue;
+    }
+}
+
+.ant-form-item {
+    // requeired * hide 
+    .ant-form-item-required {
+        &:before {
+            content: unset !important;
+        } 
+    }
+
+    // lable padding remove
+    .ant-form-item-label {
+        padding: 0;
+    }
+}
+
+// .ant-form-item-label > label.ant-form-item-required:before {
+//     content: unset;
+//  }

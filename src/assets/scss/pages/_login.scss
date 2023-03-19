@@ -1,0 +1,12 @@
+.auth-content {
+    .password-content {
+        position: relative;
+
+        .forget-password {
+            position: absolute;
+            right: 0;
+            top: 7px;
+            z-index: 1000;
+        }
+    }
+}
