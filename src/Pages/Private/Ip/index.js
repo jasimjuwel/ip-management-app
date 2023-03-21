@@ -36,7 +36,7 @@ export default function IPList() {
         },
     ];
 
-    const getAuditLog = async () => {
+    const getIpData = async () => {
         let res = await getData(IP_LIST + `?pages=${currentPage}`);
 
         if (res) {
@@ -65,7 +65,7 @@ export default function IPList() {
 
             if (res) {
                 alertPop("success", res?.data?.message);
-                getAuditLog();
+                getIpData();
                 setOpen(false);
                 form.resetFields();
 
@@ -75,7 +75,7 @@ export default function IPList() {
 
             if (res) {
                 alertPop("success", res?.data?.message);
-                getAuditLog();
+                getIpData();
                 setOpen(false);
                 form.resetFields();
 
@@ -85,7 +85,7 @@ export default function IPList() {
     };
 
     useEffect(() => {
-        getAuditLog();
+        getIpData();
     }, [currentPage]);
 
     return (
