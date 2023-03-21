@@ -6,8 +6,19 @@ import "metismenu";
 import userImg from "../../assets/images/users/avatar-1.jpg";
 import chart from "../../assets/images/chart.svg"
 import { Link } from 'react-router-dom';
+import { postData } from '../../Scripts/api-service';
+import { LOGOUT } from '../../Scripts/api';
+import Cookies from 'js-cookie';
 
 export default function Sidebar() {
+
+  const logout = async () => {
+    console.log("here");
+    await postData(LOGOUT);
+
+  Cookies.remove("IPToken");
+  window.location = "/auth/login";
+  };
 
   useEffect(() => {
     $("#side-menu").metisMenu();
@@ -48,7 +59,7 @@ export default function Sidebar() {
               </a>
               <ul className="sub-menu" aria-expanded="true">
                 <li>
-                  <a href="index.html">
+                  <a href="/ip-list">
                     <span data-key="t-calendar"> IP List </span>
                   </a>
                 </li>
@@ -58,6 +69,11 @@ export default function Sidebar() {
                   </Link>
                 </li>
               </ul>
+            </li>
+            <li className="">
+              <a href="#;" className="dropdown-item cursor-pointer p-2" onClick={() => logout()}>
+                  Logout
+                </a>
             </li>
           </ul>
         </div>

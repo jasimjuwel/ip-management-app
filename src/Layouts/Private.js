@@ -1,7 +1,6 @@
 import Cookies from "js-cookie";
 import React, { useEffect } from "react";
 import { Outlet, Route, Routes } from 'react-router-dom';
-import Footer from "../Components/layoutsComponents/Footer";
 import NavBar from "../Components/layoutsComponents/NavBar";
 import Sidebar from "../Components/layoutsComponents/Sidebar";
 import PrivateRouter from "../Routers/PrivateRouter";
@@ -29,7 +28,6 @@ export default function PrivateLayout() {
             </Routes>
           </div>
 
-          <Footer />
         </div>
       </div>
     </>

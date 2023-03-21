@@ -24,14 +24,27 @@ export const getData = async (query, no_token) => {
     });
     return data;
   } catch (error) {
+    let errors = error.response?.data?.errors;
 
+    if (error.response?.data?.message) {
+      alert(error.response?.data?.message);
+    } else if (errors.length) {
+      if (errors && Object.keys(errors).length) {
+        for (var key of Object.keys(errors)) {
+          // console.log(key + " -> " + errors[key]);
+          alert(errors[key]);
+        }
+      }
+    } else {
+      alert();
+    }
   }
 };
 
 /* query ---> api url to query with
      data ---> data to be posted
      no_token ---> acts as a flag for no need to use token */
-export const postData = async (query, data, no_token) => {
+export const postData = async (query, data, no_token, form) => {
   try {
     console.log(`${base_url}${query}`);
     let res = await axios({
@@ -47,13 +60,34 @@ export const postData = async (query, data, no_token) => {
 
     return res;
   } catch (error) {
-    console.log("error", error.response);
-    alert(error?.response?.data);
+    console.log(error)
+    let errors = error.response?.data?.errors;
+
+
+    if (errors && Object.keys(errors).length && form) {
+      let errValue = [];
+      for (var key of Object.keys(errors)) {
+        var error_data = {
+          name: key,
+          errors: errors[key]
+        }
+        errValue.push(error_data);
+      }
+      form.setFields(errValue);
+    }
+    else if (error.response?.data?.message) {
+      alert(error.response?.data?.message);
+    }
+    else {
+      alert();
+    }
+
+
     return false;
   }
 };
 
-export const putData = async (query, data, no_token) => {
+export const putData = async (query, data, no_token, form) => {
   try {
     console.log(`${base_url}${query}`);
     let res = await axios({
@@ -69,7 +103,29 @@ export const putData = async (query, data, no_token) => {
 
     return res;
   } catch (error) {
-    console.log("error", error);
+    console.log(error)
+    let errors = error.response?.data?.errors;
+
+
+    if (errors && Object.keys(errors).length && form) {
+      let errValue = [];
+      for (var key of Object.keys(errors)) {
+        var error_data = {
+          name: key,
+          errors: errors[key]
+        }
+        errValue.push(error_data);
+      }
+      form.setFields(errValue);
+    }
+    else if (error.response?.data?.message) {
+      alert(error.response?.data?.message);
+    }
+    else {
+      alert();
+    }
+
+
     return false;
   }
 };
